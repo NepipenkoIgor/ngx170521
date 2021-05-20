@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'course-header',
@@ -10,4 +10,10 @@ export class HeaderComponent {
   @Input()
   public myTitle: string = '';
 
+  @Output()
+  public toggleSideNav = new EventEmitter()
+
+  public toggle() {
+    this.toggleSideNav.emit({name: 'Ihor'});
+  }
 }
