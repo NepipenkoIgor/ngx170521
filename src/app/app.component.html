@@ -1,5 +1,7 @@
-<course-header [myTitle]="title" (toggleSideNav)="keyUp($event)"></course-header>
+<course-header [myTitle]="title"></course-header>
+<course-sidenav>
+  <ng-template #contentTml>
+    <course-search  [searchTerm]="text" (searchTermChange)="title.text = $event"></course-search>
+  </ng-template>
+</course-sidenav>
 
-<!--<h3 [innerHTML]="tag" ></h3>-->
-<!--<img [src]="image" [alt]="title">-->
-<!--<input type="text" (input)="sendValue(image, $event)" (keyup)="keyUp($event)">-->

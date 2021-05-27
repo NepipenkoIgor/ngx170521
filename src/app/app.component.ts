@@ -1,11 +1,5 @@
-import { Component } from '@angular/core';
-import { DomSanitizer } from "@angular/platform-browser";
+import {  Component } from '@angular/core';
 
-interface IUser {
-  info: {
-    male: boolean
-  }
-}
 
 @Component({
   selector: 'course-root',
@@ -13,24 +7,7 @@ interface IUser {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public title = 'ngx170521 AWESOME';
-  public user!: IUser;
+  public title = {text: 'ngx170521 AWESOME'};
+  public text = 'iphone'
 
-  public constructor(
-    private domSanitizer: DomSanitizer
-  ) {
-  }
-
-  public tag = this.domSanitizer.bypassSecurityTrustHtml('<span style="color:red">Some</span>');
-
-  public image = 'https://w7.pngwing.com/pngs/224/196/png-transparent-web-development-angularjs-javascript-vue-js-world-wide-web-thumbnail.png'
-
-  public sendValue(_v: string, e: Event): void {
-    // const v = (e.target as HTMLInputElement).value;
-    console.log(e);
-  }
-
-  public keyUp(e: Event): void {
-    console.log(e);
-  }
 }
