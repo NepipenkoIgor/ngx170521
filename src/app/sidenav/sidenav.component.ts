@@ -1,4 +1,10 @@
-import { Component, ContentChild, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatDrawer } from "@angular/material/sidenav";
 
 @Component({
@@ -8,18 +14,13 @@ import { MatDrawer } from "@angular/material/sidenav";
 })
 export class SidenavComponent implements OnInit {
   @ViewChild('drawer', {static: true})
-  public myEl!: MatDrawer
+  public drawer!: MatDrawer
 
-  @ViewChild('drawer', {static: true, read: ViewContainerRef})
-  public content!: ViewContainerRef
-
-  @ContentChild('contentTml', {static: true})
-  public contentTml!: TemplateRef<any>
+  @Output()
+  public setSideNavControl = new EventEmitter(true);
 
   public ngOnInit() {
-    console.log(this.myEl);
-    console.log(this.content);
-    this.content.createEmbeddedView(this.contentTml)
+    this.setSideNavControl.emit(this.drawer);
   }
 
 }

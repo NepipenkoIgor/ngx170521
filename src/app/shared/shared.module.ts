@@ -7,6 +7,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 
 
@@ -21,6 +24,9 @@ import { MatListModule } from "@angular/material/list";
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
+    MatGridListModule,
+    MatProgressSpinnerModule,
     FlexLayoutModule
   ]
 })

@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./shared/shared.module";
 import { SearchComponent } from './search/search.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductsFilterPipe } from './products-filter.pipe';
 // NgModule => es6
 // declarations => let/const
 // imports = import
@@ -17,7 +19,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     AppComponent,
     HeaderComponent,
     SearchComponent,
-    SidenavComponent
+    SidenavComponent,
+    ProductCardComponent,
+    ProductsFilterPipe
   ],
   imports: [
     BrowserModule,
