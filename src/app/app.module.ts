@@ -9,6 +9,9 @@ import { SearchComponent } from './search/search.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsFilterPipe } from './products-filter.pipe';
+import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
+import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
+import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 // NgModule => es6
 // declarations => let/const
 // imports = import
@@ -21,7 +24,10 @@ import { ProductsFilterPipe } from './products-filter.pipe';
     SearchComponent,
     SidenavComponent,
     ProductCardComponent,
-    ProductsFilterPipe
+    ProductsFilterPipe,
+    ExchangeRatesComponent,
+    ExchangeRatesDirective,
+    HiddenDirective
   ],
   imports: [
     BrowserModule,

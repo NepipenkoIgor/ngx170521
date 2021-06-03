@@ -1,9 +1,11 @@
 <course-header [myTitle]="title" [drawer]="drawer"></course-header>
 <course-sidenav (setSideNavControl)="setSideNav($event)">
   <course-search [searchTerm]="text" (searchTermChange)="text = $event"></course-search>
+  <mat-checkbox class="example-margin" (change)="toggleOnlyFavorites($event)">Show only favorites</mat-checkbox>
+
   <mat-grid-list cols="4" rowHeight="500px" *ngIf="products$ | async as products else loading">
     <mat-grid-tile
-      *ngFor="let product of products | productsFilter: text; index as  i  ;  odd as isOdd">
+      *ngFor="let product of products | productsFilter: text: onlyFavorites; index as  i  ;  odd as isOdd">
       <course-product-card [product]="product" [isOdd]="isOdd"></course-product-card>
     </mat-grid-tile>
   </mat-grid-list>
