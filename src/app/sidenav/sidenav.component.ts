@@ -6,11 +6,15 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatDrawer } from "@angular/material/sidenav";
+import { ProductsService } from "../products.service";
 
 @Component({
   selector: 'course-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+  styleUrls: ['./sidenav.component.css'],
+  providers: [{
+    provide: ProductsService, useClass: ProductsService
+  }]
 })
 export class SidenavComponent implements OnInit {
   @ViewChild('drawer', {static: true})

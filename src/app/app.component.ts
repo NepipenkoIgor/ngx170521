@@ -1,10 +1,10 @@
-import { Component, Type } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDrawer } from "@angular/material/sidenav";
-import { IProduct, products$ } from "./products";
 import { Observable } from "rxjs";
 import { UnSubscriber } from "./shared/utils/unsubscriber";
 import { tap } from "rxjs/operators";
 import { MatCheckboxChange } from "@angular/material/checkbox";
+import { IProduct, ProductsService } from "./products.service";
 
 
 @Component({
@@ -18,9 +18,16 @@ export class AppComponent extends UnSubscriber {
   public drawer!: MatDrawer;
   public products!: IProduct[];
   public onlyFavorites: boolean = false;
-  public products$: Observable<IProduct[]> = products$.pipe(tap((v) => {
-    console.log(v);
+  public products$: Observable<IProduct[]> = this.productsService.getProducts().pipe(tap((v) => {
+    console.log('TAP ==>', v);
   }));
+
+  public constructor(
+    private readonly productsService: ProductsService
+  ) {
+    super();
+    // console.log(this.productsService)
+  }
 
 
   public setSideNav(drawer: MatDrawer) {
@@ -30,16 +37,4 @@ export class AppComponent extends UnSubscriber {
   public toggleOnlyFavorites(e: MatCheckboxChange): void {
     this.onlyFavorites = e.checked;
   }
-}
-
-interface Acc<T> {
-  id: T;
-}
-
-const u1: Acc<number> = {
-  id: 1,
-}
-
-const u1: Acc<string> = {
-  id: '1'
 }

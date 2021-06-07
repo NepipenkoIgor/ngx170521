@@ -12,6 +12,9 @@ import { ProductsFilterPipe } from './products-filter.pipe';
 import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
 import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
 import { HiddenDirective } from './header/exchange-rates/hidden.directive';
+import { ProductsService } from "./products.service";
+import { environment } from "../environments/environment";
+import { BASE_URL } from "./config";
 // NgModule => es6
 // declarations => let/const
 // imports = import
@@ -32,7 +35,13 @@ import { HiddenDirective } from './header/exchange-rates/hidden.directive';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule.forAppRoot()
+  ],
+  providers: [
+    // {provide: ProductsService, useClass: ProductsService}
+    ProductsService,
+    {provide: BASE_URL, useValue: {port: environment.port, domain: environment.domain}},
+    {provide: 'baseUrl', useValue: 'localhost: 3000'},
   ],
   bootstrap: [AppComponent]
 })
