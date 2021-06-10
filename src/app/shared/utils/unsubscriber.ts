@@ -15,3 +15,20 @@ export class UnSubscriber implements OnDestroy {
     this.unSubscriber.complete();
   }
 }
+type ConstructableForMixin = new (...args: any[]) => any;
+export function UnSubscriberMixin<BC extends ConstructableForMixin>(Base: BC) {
+  return class extends Base {
+    private unSubscriber = new Subject();
+
+    protected getUnSubscriber() {
+      return this.unSubscriber.asObservable();
+    }
+
+    public ngOnDestroy(): void {
+      this.unSubscriber.next(true);
+      this.unSubscriber.complete();
+      super.ngOnDestroy();
+    }
+  };
+}
+

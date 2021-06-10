@@ -1,5 +1,6 @@
-import { Component, Host, Input } from '@angular/core';
-import { IProduct, ProductsService } from "../products.service";
+import { Component, Input } from '@angular/core';
+import { IProduct } from "../products.service";
+import { ModalService } from "../modal/modal.service";
 
 @Component({
   selector: 'course-product-card',
@@ -18,12 +19,34 @@ export class ProductCardComponent {
   public isOdd!: boolean;
 
   public constructor(
-    @Host() private readonly productsService: ProductsService
+    private modalService: ModalService
   ) {
-    console.log(this.productsService);
   }
 
   public toggleIsFavorite() {
     this.product.isFavorite = !this.product.isFavorite
+  }
+
+  public async addToCart(): Promise<void> {
+    const m = await import('./confirm-product/confirm-product.component');
+    this.modalService.open({
+      component: m.ConfirmProductComponent,
+      context: {
+        product: {...this.product},
+        save: () => {
+          console.log('Save');
+          this.modalService.open({
+            component:  m.ConfirmProductComponent,
+            context: {
+              product: {...this.product, title: 'Next popup'},
+            }
+          })
+        },
+        close: () => {
+          console.log('close');
+          this.modalService.close();
+        }
+      }
+    });
   }
 }

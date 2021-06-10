@@ -15,6 +15,7 @@ import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 import { ProductsService } from "./products.service";
 import { environment } from "../environments/environment";
 import { BASE_URL } from "./config";
+import { ModalModule } from "./modal/modal.module";
 // NgModule => es6
 // declarations => let/const
 // imports = import
@@ -35,7 +36,8 @@ import { BASE_URL } from "./config";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule.forAppRoot()
+    SharedModule.forAppRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     // {provide: ProductsService, useClass: ProductsService}

@@ -23,7 +23,7 @@ export class ProductsService {
   }
 
   public getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`/products1`)
+    return this.http.get<IProduct[]>(`/products`)
       .pipe(
         catchError((err: HttpErrorResponse) => {
           console.log('!!!!', err);
