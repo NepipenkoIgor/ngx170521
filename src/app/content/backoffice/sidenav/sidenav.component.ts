@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatDrawer } from "@angular/material/sidenav";
-import { ProductsService } from "../products.service";
+import { ProductsService } from "../content/products/products.service";
 
 @Component({
   selector: 'course-sidenav',

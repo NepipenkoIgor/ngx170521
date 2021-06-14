@@ -11,13 +11,13 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCheckboxModule } from "@angular/material/checkbox";
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { AuthInterceptor } from "./auth/auth.interceptor";
+import { CommonModule } from "@angular/common";
 
 
 @NgModule({
   declarations: [],
   exports: [
+    CommonModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -30,22 +30,14 @@ import { AuthInterceptor } from "./auth/auth.interceptor";
     MatGridListModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    FlexLayoutModule,
-    HttpClientModule
+    FlexLayoutModule
   ],
-
 })
 export class SharedModule {
   public static forAppRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
-      providers: [
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthInterceptor,
-          multi: true
-        }
-      ]
+      providers: []
     }
   }
 }

@@ -32,5 +32,15 @@ export class ProductsService {
       )
   }
 
+  public getOneProduct(id: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`/products/${id}`)
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          console.log('!!!!', err);
+          return of({} as IProduct);
+        })
+      )
+  }
+
 
 }
