@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { pluck, switchMap, takeUntil } from "rxjs/operators";
+import { Component } from '@angular/core';
+import { pluck, takeUntil } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
-import { ProductsService } from "../products.service";
 import { UnSubscriber } from "../../../../../shared/utils/unsubscriber";
 
 @Component({
@@ -9,26 +8,18 @@ import { UnSubscriber } from "../../../../../shared/utils/unsubscriber";
   templateUrl: './one-product.component.html',
   styleUrls: ['./one-product.component.css']
 })
-export class OneProductComponent extends UnSubscriber implements OnInit {
+export class OneProductComponent extends UnSubscriber  {
 
   public title$ = this.activatedRoute.data.pipe(pluck('title'), takeUntil(this.getUnSubscriber()));
-  public product$ = this.activatedRoute.params.pipe(
-    pluck('id'),
-    takeUntil(this.getUnSubscriber()),
-    switchMap((id: string) => {
-      return this.productsService.getOneProduct(id);
-    }),
+  public product$ = this.activatedRoute.data.pipe(
+    pluck('product'),
+    takeUntil(this.getUnSubscriber())
   );
 
   public constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly productsService: ProductsService,
   ) {
     super();
-  }
-
-  public ngOnInit(): void {
-    console.log(this.activatedRoute)
   }
 
 }

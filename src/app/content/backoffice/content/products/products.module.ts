@@ -6,6 +6,7 @@ import { SearchComponent } from "./search/search.component";
 import { ProductCardComponent } from "./product-card/product-card.component";
 import { ProductsFilterPipe } from "./products-filter.pipe";
 import { OneProductComponent } from './one-product/one-product.component';
+import { ProductResolverService } from "./one-product/product-resolver.service";
 
 
 
@@ -19,7 +20,10 @@ import { OneProductComponent } from './one-product/one-product.component';
   ],
   imports: [
     SharedModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+  ],
+  providers: [
+    ProductResolverService
   ]
 })
 export class ProductsModule { }

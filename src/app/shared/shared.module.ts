@@ -12,10 +12,14 @@ import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { CommonModule } from "@angular/common";
+import { WithoutSpecialSymbolsDirective } from './validators/without-special-symbols.directive';
 
+const declarations = [
+  WithoutSpecialSymbolsDirective
+];
 
 @NgModule({
-  declarations: [],
+  declarations,
   exports: [
     CommonModule,
     MatToolbarModule,
@@ -30,7 +34,8 @@ import { CommonModule } from "@angular/common";
     MatGridListModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ...declarations
   ],
 })
 export class SharedModule {

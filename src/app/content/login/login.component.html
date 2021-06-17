@@ -1,1 +1,22 @@
-<a mat-button [routerLink]="['/signup']" >Go to Sign Up</a>
+<div class="login-content">
+  <mat-card>
+    <p>Login to continue</p>
+    <div ngForm #f="ngForm">
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput type="text" placeholder="User name" #c="ngModel" name="username" ngModel required
+                 minlength="6" courseWithoutSpecialSymbols>
+          <mat-error *ngIf="c.errors?.withOutSpecial as withOutSpecial">{{withOutSpecial}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" name="password" ngModel required minlength="6">
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="login(f.value)">Log In</button>
+        <a mat-button [routerLink]="['/signup']">Sign Up</a>
+      </mat-card-content>
+    </div>
+  </mat-card>
+
+</div>
+

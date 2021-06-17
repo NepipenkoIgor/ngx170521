@@ -1,2 +1,28 @@
-<a mat-button (click)="goToLogin()">Go to Login</a>
+<div class="login-content">
+  <mat-card>
+    <p>Login to continue</p>
+    <div [formGroup]="signUpForm" >
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput type="text" placeholder="User name"  formControlName="username"
+                 courseWithoutSpecialSymbols>
+          <mat-error *ngIf="signUpForm.get('username')?.errors?.withOutSpecial as withOutSpecial">{{withOutSpecial}}</mat-error>
+        </mat-form-field>
+        <div formGroupName="ps">
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" >
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Confirm Password" formControlName="cpassword" >
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid" (click)="signup()">Sign Up</button>
+        <a mat-button [routerLink]="['/login']">Log In</a>
+      </mat-card-content>
+    </div>
+  </mat-card>
+
+</div>
+
+
 

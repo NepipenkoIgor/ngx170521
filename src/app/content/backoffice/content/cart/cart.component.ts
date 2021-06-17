@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { pluck } from "rxjs/operators";
 
@@ -7,7 +7,7 @@ import { pluck } from "rxjs/operators";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
 
   public title$ = this.activatedRoute.data.pipe(pluck('title'));
 
@@ -16,8 +16,5 @@ export class CartComponent implements OnInit {
   ) {
   }
 
-  public ngOnInit(): void {
-    console.log(this.activatedRoute)
-  }
 
 }

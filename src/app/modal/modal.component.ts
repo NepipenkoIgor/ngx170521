@@ -46,7 +46,6 @@ export class ModalComponent extends UnSubscriberMixin(BaseComponent) implements 
           return;
         }
         this.isOpen = true;
-        console.log(this.modalContent);
         this.componentFactory = this.cfr.resolveComponentFactory(data.component);
         this.componentRef = this.modalContent.createComponent(this.componentFactory, 0);
         Object.entries(data.context).forEach(([key, value]) => {
