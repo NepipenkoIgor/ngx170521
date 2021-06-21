@@ -3,12 +3,14 @@ import { SignupComponent } from "./signup.component";
 import { SharedModule } from "../../shared/shared.module";
 import { SignupRoutingModule } from "./signup-routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SwitcherComponent } from './switcher/switcher.component';
 
 
 
 @NgModule({
   declarations: [
-    SignupComponent
+    SignupComponent,
+    SwitcherComponent
   ],
   imports: [
     SignupRoutingModule,

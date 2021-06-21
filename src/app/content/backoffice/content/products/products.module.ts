@@ -7,6 +7,10 @@ import { ProductCardComponent } from "./product-card/product-card.component";
 import { ProductsFilterPipe } from "./products-filter.pipe";
 import { OneProductComponent } from './one-product/one-product.component';
 import { ProductResolverService } from "./one-product/product-resolver.service";
+import { StoreModule } from "@ngrx/store";
+import { productsReducer } from "./store/reducers/products.reducers";
+import { EffectsModule } from "@ngrx/effects";
+import { ProductsEffects } from "./store/effects/products.effects";
 
 
 
@@ -21,6 +25,8 @@ import { ProductResolverService } from "./one-product/product-resolver.service";
   imports: [
     SharedModule,
     ProductsRoutingModule,
+    StoreModule.forFeature('products', productsReducer),
+    EffectsModule.forFeature([ProductsEffects])
   ],
   providers: [
     ProductResolverService

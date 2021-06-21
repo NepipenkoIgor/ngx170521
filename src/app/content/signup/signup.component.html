@@ -8,6 +8,29 @@
                  courseWithoutSpecialSymbols>
           <mat-error *ngIf="signUpForm.get('username')?.errors?.withOutSpecial as withOutSpecial">{{withOutSpecial}}</mat-error>
         </mat-form-field>
+
+
+        <div fxLayout="column">
+          <div fxLayout="row"
+           *ngFor="let control of getArrayControl(signUpForm, 'emails'); first as f; count as c; index as i">
+            <mat-form-field fxFlex="80">
+              <input matInput type="text" placeholder="Email"  [formControl]="getControl(control, 'email')">
+            </mat-form-field>
+            <course-switcher fxFlex="10"  [formControl]="getControl(control, 'public')" ></course-switcher>
+            <div fxLayout="row" fxFlex="10">
+              <mat-icon *ngIf="f" (click)="addEmail()">add</mat-icon>
+              <mat-icon *ngIf="c > 1" (click)="removeEmail(i)">delete</mat-icon>
+            </div>
+          </div>
+        </div>
+
+
+        <div fxLayout="row">
+          <div>Male</div>
+          <course-switcher formControlName="male"></course-switcher>
+        </div>
+
+
         <div formGroupName="ps">
           <mat-form-field>
             <input matInput type="password" placeholder="Password" formControlName="password" >
@@ -16,12 +39,11 @@
             <input matInput type="password" placeholder="Confirm Password" formControlName="cpassword" >
           </mat-form-field>
         </div>
-        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid" (click)="signup()">Sign Up</button>
+        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid || signUpForm.pending" (click)="signup()">Sign Up</button>
         <a mat-button [routerLink]="['/login']">Log In</a>
       </mat-card-content>
     </div>
   </mat-card>
-
 </div>
 
 

@@ -1,5 +1,5 @@
 import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, delay, switchMap } from "rxjs/operators";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, Optional } from "@angular/core";
 
@@ -23,13 +23,17 @@ export class ProductsService {
   }
 
   public getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`/products`)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('!!!!', err);
-          return of([]);
-        })
-      )
+    return of(true)
+      .pipe(delay(3000),
+        switchMap(() => {
+          return this.http.get<IProduct[]>(`/products`)
+            .pipe(
+              catchError((err: HttpErrorResponse) => {
+                console.log('!!!!', err);
+                return of([]);
+              })
+            )
+        }))
   }
 
   public getOneProduct(id: string): Observable<IProduct | null> {

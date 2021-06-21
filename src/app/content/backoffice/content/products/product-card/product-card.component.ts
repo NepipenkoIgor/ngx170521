@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from "../products.service";
 import { ModalService } from "../../../../../modal/modal.service";
+import { Store } from "@ngrx/store";
+import { updateProduct } from "../store/actions/products.actions";
 
 @Component({
   selector: 'course-product-card',
@@ -19,12 +21,13 @@ export class ProductCardComponent {
   public isOdd!: boolean;
 
   public constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
+    private store: Store<any>,
   ) {
   }
 
   public toggleIsFavorite() {
-    this.product.isFavorite = !this.product.isFavorite
+    this.store.dispatch(updateProduct({product: {...this.product, isFavorite: !this.product.isFavorite}}))
   }
 
   public async addToCart(): Promise<void> {
@@ -36,7 +39,7 @@ export class ProductCardComponent {
         save: () => {
           console.log('Save');
           this.modalService.open({
-            component:  m.ConfirmProductComponent,
+            component: m.ConfirmProductComponent,
             context: {
               product: {...this.product, title: 'Next popup'},
             }

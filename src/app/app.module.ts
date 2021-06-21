@@ -9,6 +9,9 @@ import { ModalModule } from "./modal/modal.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptor } from "./shared/auth/auth.interceptor";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,26 @@ import { AuthInterceptor } from "./shared/auth/auth.interceptor";
     SharedModule.forAppRoot(),
     ModalModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot([], {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictStateSerializability: false,
+        strictActionImmutability: false,
+        strictActionSerializability: false
+      }
+    }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      autoPause: true,
+      features: {
+        pause: false,
+        lock: true,
+        persist: true
+      }
+    })
   ],
   providers: [
     {
