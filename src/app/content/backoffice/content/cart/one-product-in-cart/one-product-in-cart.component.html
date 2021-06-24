@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="space-around center">
+  <img [src]="product.img" [alt]="product.title">
+  <div fxLayout="row">
+    <mat-icon class="dec" (click)="decrementProduct()">remove</mat-icon>
+    <span>{{product.count}}</span>
+    <mat-icon (click)="incrementProduct()">add</mat-icon>
+  </div>
+  <span>{{product.price | currency: 'USD'}}</span>
+  <mat-icon (click)="removeProduct()">delete</mat-icon>
+</div>

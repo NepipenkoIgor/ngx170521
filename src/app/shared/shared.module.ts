@@ -13,6 +13,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { CommonModule } from "@angular/common";
 import { WithoutSpecialSymbolsDirective } from './validators/without-special-symbols.directive';
+import { MatBadgeModule } from "@angular/material/badge";
 
 const declarations = [
   WithoutSpecialSymbolsDirective
@@ -35,6 +36,7 @@ const declarations = [
     MatProgressSpinnerModule,
     MatCheckboxModule,
     FlexLayoutModule,
+    MatBadgeModule,
     ...declarations
   ],
 })

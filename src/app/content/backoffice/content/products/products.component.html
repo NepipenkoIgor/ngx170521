@@ -5,7 +5,7 @@
 
 <mat-grid-list cols="4" rowHeight="500px" *ngIf="products$ | async as products">
   <mat-grid-tile
-    *ngFor="let product of products; index as  i  ;  odd as isOdd">
+    *ngFor="let product of products; index as  i  ;  odd as isOdd; trackBy: trackById">
     <course-product-card [product]="product" [isOdd]="isOdd"></course-product-card>
   </mat-grid-tile>
 </mat-grid-list>

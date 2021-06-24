@@ -1,2 +1,15 @@
-<h3>{{title$ | async}}</h3>
-<p>cart works!</p>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h3>{{title$ | async}}</h3>
+  <div fxLayout="row">
+    <span>{{totalPrice$ | async | currency: 'USD' }}</span>
+    <mat-icon (click)="clear()">delete</mat-icon>
+  </div>
+</div>
+<course-one-product-in-cart *ngFor="let product of products$ | async; trackBy: trackById"
+    [product]="product"
+                            (increment)="increment(product)"
+                            (decrement)="decrement(product)"
+                            (remove)="remove(product)"
+>
+
+</course-one-product-in-cart>

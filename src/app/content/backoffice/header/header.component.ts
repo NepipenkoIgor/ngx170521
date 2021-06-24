@@ -4,6 +4,8 @@ import {
   Input,
 } from '@angular/core';
 import { MatDrawer } from "@angular/material/sidenav";
+import { Store } from "@ngrx/store";
+import { totalProductsCount } from "../store/reducers/cart.reducers";
 
 @Component({
   selector: 'course-header',
@@ -18,6 +20,13 @@ export class HeaderComponent {
 
   @Input()
   public drawer!: MatDrawer;
+
+  public productsCount$ = this.state.select(totalProductsCount)
+
+  public constructor(
+    public readonly state: Store<any>
+  ) {
+  }
 
   public toggle() {
     this.drawer.toggle();

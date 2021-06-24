@@ -37,4 +37,7 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(setProductsFilter({filters: {text}}))
   }
 
+  public trackById(_index: number, item: IProduct): string {
+    return item._id;
+  }
 }

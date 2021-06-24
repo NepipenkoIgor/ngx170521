@@ -8,6 +8,9 @@ import { ExchangeRatesDirective } from "./header/exchange-rates/exchange-rates.d
 import { HiddenDirective } from "./header/exchange-rates/hidden.directive";
 import { ProductsService } from "./content/products/products.service";
 import { BackofficeRoutingModule } from "./backoffice-routing.module";
+import { StoreModule } from "@ngrx/store";
+import { cartReducer } from "./store/reducers/cart.reducers";
+import { userReducer } from "./store/reducers/user.reducers";
 
 
 @NgModule({
@@ -22,6 +25,8 @@ import { BackofficeRoutingModule } from "./backoffice-routing.module";
   imports: [
     BackofficeRoutingModule,
     SharedModule,
+    StoreModule.forFeature('cart', cartReducer),
+    StoreModule.forFeature('user', userReducer),
   ],
   providers: [
     ProductsService,

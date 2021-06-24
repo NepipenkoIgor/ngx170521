@@ -1,5 +1,5 @@
 import { Observable, of } from "rxjs";
-import { catchError, delay, switchMap } from "rxjs/operators";
+import { catchError, switchMap } from "rxjs/operators";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, Optional } from "@angular/core";
 
@@ -24,7 +24,8 @@ export class ProductsService {
 
   public getProducts(): Observable<IProduct[]> {
     return of(true)
-      .pipe(delay(3000),
+      .pipe(
+        // delay(3000),
         switchMap(() => {
           return this.http.get<IProduct[]>(`/products`)
             .pipe(

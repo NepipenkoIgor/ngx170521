@@ -3,6 +3,7 @@ import { IProduct } from "../products.service";
 import { ModalService } from "../../../../../modal/modal.service";
 import { Store } from "@ngrx/store";
 import { updateProduct } from "../store/actions/products.actions";
+import { addProductToCart } from "../../../store/actions/cart.actions";
 
 @Component({
   selector: 'course-product-card',
@@ -38,12 +39,8 @@ export class ProductCardComponent {
         product: {...this.product},
         save: () => {
           console.log('Save');
-          this.modalService.open({
-            component: m.ConfirmProductComponent,
-            context: {
-              product: {...this.product, title: 'Next popup'},
-            }
-          })
+          this.store.dispatch(addProductToCart({product: {...this.product}}))
+          this.modalService.close();
         },
         close: () => {
           console.log('close');

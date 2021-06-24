@@ -9,7 +9,7 @@
   <div fxLayout="row" fxLayoutAlign="space-around center" >
     <course-exchange-rates></course-exchange-rates>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon [routerLink]="['cart']" >shopping_cart</mat-icon>
+      <mat-icon [matBadge]="productsCount$ | async" [routerLink]="['cart']"  matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
   </div>
 </mat-toolbar>
